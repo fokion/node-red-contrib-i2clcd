@@ -316,14 +316,14 @@ module.exports = function (RED) {
     function I2Clcd(config){
        console.log("Creating lcd node")
        RED.nodes.createNode(this,config);
-       var node = this;
+       let node = this;
        this.LCD_ADDR = Number(config.addr);
        this.LCD_BUS = Number(config.bus);
        this.LCD_NUMCOLS = Number(config.numcols);
        this.LCD_NUMROWS = Number(config.numrows);
        console.log("LCD node init @ i2c addr:" + this.LCD_ADDR);
        lcd = new LCD(this.LCD_BUS,this.LCD_ADDR,this.LCD_NUMCOLS,this.LCD_NUMROWS);
-       this.on('input', function(msg) {
+       node.on('input', function(msg) {
           /** console.log("LCD input "+msg.topic); */
           if (msg.topic.localeCompare("init") === 0) {
              lcd._init();

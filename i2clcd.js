@@ -44,6 +44,18 @@ module.exports = function (RED) {
                     return this
                 }
             });
+            //110011 Initialise
+            this.lcdByte(0x33,this.LCD_CMD)
+            //110010 Initialise
+            this.lcdByte(0x32,this.LCD_CMD)
+            //Cursor move direction
+            this.lcdByte(0x06,this.LCD_CMD)
+            //Display On , Cursor off , blink off
+            this.lcdByte(0x0C,this.LCD_CMD)
+            //data length, number of lines , font size
+            this.lcdByte(0x28,this.LCD_CMD)
+            //clear
+            this.lcdByte(0x01,this.LCD_CMD)
         }
 
         _sleep(milli) {
@@ -82,9 +94,7 @@ module.exports = function (RED) {
         }
 
         async message(text,line=1){
-            if(line > 2){
-                line = 1
-            }
+            line = this.LINEADDRESS[line%2]
             text = text.substr(0,this.cols)
             await this.lcdByte(line,this.LCD_CMD)
             for(let i = 0 ; i < this.cols ; i++){

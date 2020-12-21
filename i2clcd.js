@@ -313,7 +313,7 @@ module.exports = function (RED) {
 
     }
     let lcd = null
-    function lcdNode(config){
+    function I2Clcd(config){
        console.log("Creating lcd node")
        RED.nodes.createNode(this,config);
        var node = this;
@@ -368,6 +368,6 @@ module.exports = function (RED) {
        });
 
     }
-   RED.nodes.registerType("i2clcd",lcdNode);
+   RED.nodes.registerType("i2clcd",I2Clcd);
 
 }

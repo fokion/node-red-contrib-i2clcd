@@ -8,9 +8,12 @@
   },
   "keywords": [
     "node-red",
-    "i2c",
+    "i2c-bus",
     "lcd",
-    "raspberry"
+    "raspberry",
+    "orange",
+    "i2c",
+    "pcf8574p"
   ],
   "node-red": {
     "nodes": {
